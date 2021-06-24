@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Profil extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,7 +18,11 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index() {
-		$this->load->view('welcome_message');
+	function index() {
+		$data['pages'] = 'profil';
+		$data['content'] = [
+			'title' => 'Profil | SISTA - Sistem Informasi Seminar Tugas Akhir',
+		];
+		$this->load->view('layouts/base', $data);
 	}
 }
