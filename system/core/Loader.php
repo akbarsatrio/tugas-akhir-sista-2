@@ -1412,4 +1412,8 @@ class CI_Loader {
 		$CI =& get_instance();
 		return $CI->$component;
 	}
+
+	protected function assets_sista($params){
+		return base_url("assets/{$params}");
+	}
 }
