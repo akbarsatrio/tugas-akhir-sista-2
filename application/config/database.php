@@ -73,12 +73,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+if($_SERVER['SERVER_NAME'] == 'new.sista.akbarsatrio.com'){
+	$upd = [
+		'username' => 'root',
+		'password' => '',
+		'database' => 'db_sista'
+	];
+} else {
+	$upd = [
+		'username' => 'root',
+		'password' => '',
+		'database' => 'db_sista'
+	];
+}
+
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'username' => $upd['username'],
+	'password' => $upd['password'],
+	'database' => $upd['database'],
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
