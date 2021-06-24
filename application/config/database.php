@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 if($_SERVER['SERVER_NAME'] == 'new.sista.akbarsatrio.com'){
 	$upd = [
-		'username' => 'root',
-		'password' => '',
-		'database' => 'db_sista'
+		'username' => 'akbarsat_sista',
+		'password' => 'akbarsat_sista',
+		'database' => 'akbarsat_sista'
 	];
 } else {
 	$upd = [
