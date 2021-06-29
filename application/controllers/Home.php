@@ -19,9 +19,19 @@ class Home extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function index() {
+		$data['menu'] = $this->get_menu();
 		$data['pages'] = 'home';
 		$data['content'] = [
 			'title' => 'Home | SISTA - Sistem Informasi Seminar Tugas Akhir',
+		];
+		$this->load->view('layouts/base', $data);
+	}
+
+	function login() {
+		$data['menu'] = $this->get_menu();
+		$data['pages'] = 'login';
+		$data['content'] = [
+			'title' => 'Masuk | SISTA - Sistem Informasi Seminar Tugas Akhir'
 		];
 		$this->load->view('layouts/base', $data);
 	}

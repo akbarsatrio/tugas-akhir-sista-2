@@ -19,9 +19,19 @@ class Jadwal extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function index() {
+		$data['menu'] = $this->get_menu();
 		$data['pages'] = 'jadwal';
 		$data['content'] = [
 			'title' => 'Jadwal | SISTA - Sistem Informasi Seminar Tugas Akhir',
+		];
+		$this->load->view('layouts/base', $data);
+	}
+
+	function detail($id){
+		$data['menu'] = $this->get_menu();
+		$data['pages'] = 'jadwal-detail';
+		$data['content'] = [
+			'title' => 'Detail | SISTA - Sistem Informasi Seminar Tugas Akhir',
 		];
 		$this->load->view('layouts/base', $data);
 	}

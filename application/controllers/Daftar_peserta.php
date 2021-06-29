@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Berita extends CI_Controller {
+class Daftar_peserta extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,9 +20,9 @@ class Berita extends CI_Controller {
 	 */
 	function index() {
 		$data['menu'] = $this->get_menu();
-		$data['pages'] = 'berita';
+		$data['pages'] = 'daftar-peserta';
 		$data['content'] = [
-			'title' => 'Berita | SISTA - Sistem Informasi Seminar Tugas Akhir',
+			'title' => 'Daftar Peserta | SISTA - Sistem Informasi Seminar Tugas Akhir',
 		];
 		$this->load->view('layouts/base', $data);
 	}

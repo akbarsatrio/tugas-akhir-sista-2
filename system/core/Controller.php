@@ -100,4 +100,14 @@ class CI_Controller {
 		return self::$instance;
 	}
 
+	public function get_menu($role = NULL){
+		$this->load->model('Menu_models');
+		$data_menu = $this->Menu_models->get_menu($role)->result();
+		$data_sub_menu = $this->Menu_models->get_sub_menu($role)->result();
+		$menu = [];
+		foreach ($data_menu as $m) { $menu[$m->id_menu] = $m; $m->submenu = array();}
+		foreach ($data_sub_menu as $sm) {$menu[$sm->parent_id]->submenu[] = $sm;}
+		return $menu;
+	}
+
 }
