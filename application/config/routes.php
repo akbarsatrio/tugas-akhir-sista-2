@@ -53,5 +53,6 @@ $route['default_controller'] = 'home';
 $route['daftar-seminar'] = 'daftar_seminar';
 $route['daftar-peserta'] = 'daftar_peserta';
 $route['login'] = 'home/login';
+$route['logout'] = 'home/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

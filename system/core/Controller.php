@@ -85,6 +85,13 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
+
+		$this->load->library('form_validation');
+		$this->load->model([
+			'user_models',
+			'menu_models',
+			'jadwal_models'
+		]);
 	}
 
 	// --------------------------------------------------------------------
@@ -108,6 +115,24 @@ class CI_Controller {
 		foreach ($data_menu as $m) { $menu[$m->id_menu] = $m; $m->submenu = array();}
 		foreach ($data_sub_menu as $sm) {$menu[$sm->parent_id]->submenu[] = $sm;}
 		return $menu;
+	}
+
+	public function auto_validation($arr = [], $rule = []) {
+		foreach(array_keys($arr) as $key) $this->form_validation->set_rules("$key", ucfirst($key), $rule[$key]);
+		return $this->form_validation->run() == FALSE ? false : true;
+	}
+
+	public function alert_template($msg = '', $color = 'primary') {
+		$alert = "<div class='alert alert-{$color} alert-dismissible fade show' role='alert'>{$msg}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+		return $alert;
+	}
+
+	public function gatekeeper($to = NULL){
+		if($this->session->userdata('is_login') != TRUE) {
+			redirect("login?redirect={$to}");
+		} else {
+			return true;
+		}
 	}
 
 }

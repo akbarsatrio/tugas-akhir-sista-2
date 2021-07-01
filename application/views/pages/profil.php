@@ -1,6 +1,7 @@
 <section class="pt-5">
   <div class="container">
     <header>
+			<?= $this->session->flashdata('success') ?>
       <h1 class="text-bold">Profil saya</h1>
     </header>
     <form class="pt-3">

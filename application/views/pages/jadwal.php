@@ -18,38 +18,16 @@
                   </tr>
               </thead>
               <tbody>
+								<?php foreach($content['jadwal'] as $key => $jadwal): ?>
                   <tr>
-                      <td>1</td>
-                      <td>0102002</td>
-                      <td><a href="<?= base_url('jadwal/detail/{id}') ?>">Diego Armando</a></td>
-                      <td>Proposal</td>
-                      <td>10:00 4-01-2020</td>
+                      <td><?= $key+1 ?></td>
+                      <td><?= $jadwal->nim ?></td>
+                      <td><a href="<?= base_url("jadwal/detail/{$jadwal->seminar_id}") ?>"><?= $jadwal->nama_mahasiswa ?></a></td>
+                      <td><?= $jadwal->judul ?></td>
+                      <td><?= "{$jadwal->jam} {$jadwal->tanggal}" ?></td>
                       <td>Online</td>
                   </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>0102001</td>
-                      <td><a href="<?= base_url('jadwal/detail/{id}') ?>">Ahmad Budiman</a></td>
-                      <td>Seminar Hasil</td>
-                      <td>13:00 4-01-2020</td>
-                      <td>Online</td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>0102040</td>
-                      <td><a href="<?= base_url('jadwal/detail/{id}') ?>">Fredelina Putri</a></td>
-                      <td>Sidang akhir</td>
-                      <td>12:00 8-01-2020</td>
-                      <td>B2-304</td>
-                  </tr>
-                  <tr>
-                      <td>4</td>
-                      <td>0102003</td>
-                      <td><a href="<?= base_url('jadwal/detail/{id}') ?>">Rio Agi</a></td>
-                      <td>Sidang Akhir</td>
-                      <td>10:00 15-01-2020</td>
-                      <td>B2-305</td>
-                  </tr>
+								<?php endforeach; ?>
               </tbody>
           </table>
         </div>
