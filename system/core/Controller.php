@@ -85,6 +85,16 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
+
+		$this->load->library('form_validation');
+		$this->load->model([
+			'user_models',
+			'menu_models',
+			'jadwal_models',
+			'p_seminar_models',
+			'dosen_models',
+			'kategori_models'
+		]);
 	}
 
 	// --------------------------------------------------------------------
@@ -98,6 +108,42 @@ class CI_Controller {
 	public static function &get_instance()
 	{
 		return self::$instance;
+	}
+
+	public function get_menu($role = NULL){
+		$data_menu = $this->menu_models->get_menu($role)->result();
+		$data_sub_menu = $this->menu_models->get_sub_menu($role)->result();
+		$menu = [];
+		foreach ($data_menu as $m) { $menu[$m->id_menu] = $m; $m->submenu = array();}
+		foreach ($data_sub_menu as $sm) {$menu[$sm->parent_id]->submenu[] = $sm;}
+		return $menu;
+	}
+
+	public function auto_validation($arr = [], $rule = []) {
+		foreach(array_keys($arr) as $key) $this->form_validation->set_rules("$key", ucfirst($key), $rule[$key]);
+		return $this->form_validation->run() == FALSE ? false : true;
+	}
+
+	public function alert_template($msg = '', $color = 'primary') {
+		$alert = "<div class='alert alert-{$color} alert-dismissible fade show' role='alert'>{$msg}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+		return $alert;
+	}
+
+	public function gatekeeper($to = NULL){
+		if($this->session->userdata('is_login') != TRUE) {
+			redirect("login?redirect={$to}");
+		} else {
+			return true;
+		}
+	}
+
+	public function access($menu_link, $role_id = NULL){
+		$check_valid_menu = $this->menu_models->get_menu_access(['menu_link' => $menu_link, 'role_id' => $role_id ?? 2])->result();
+		if($check_valid_menu){
+			return true;
+		} else {
+			redirect();
+		}
 	}
 
 }

@@ -50,6 +50,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['daftar-seminar'] = 'daftar_seminar';
+$route['login'] = 'home/login';
+$route['daftar'] = 'home/daftar';
+$route['logout'] = 'home/logout';
+
+// Seminar & peserta
+$route['daftar-seminar'] = 'daftar_seminar/index';
+$route['daftar-seminar/post'] = 'daftar_seminar/post';
+$route['daftar-seminar/peserta/(:num)'] = 'daftar_seminar/peserta/$1';
+$route['daftar-seminar/peserta/(:num)/put'] = 'daftar_seminar/peserta/$1/put';
+$route['daftar-seminar/peserta/(:num)/delete'] = 'daftar_seminar/peserta/$1/delete';
+
+
+$route['berita/(:any)'] = 'berita/page/$1';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
