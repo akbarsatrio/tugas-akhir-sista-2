@@ -7,10 +7,12 @@ class Jadwal_models extends CI_Model{
 	protected $dosen = 'dosen';
 
 	function get_jadwal($where = []) {
-		$this->db->select("{$this->seminar}.id AS seminar_id, {$this->seminar}.*, {$this->kategori_s}.id, {$this->kategori_s}.nama AS kategori_nama, {$this->dosen}.id, {$this->dosen}.nama AS dosen_nama")
+		$this->db->select("{$this->seminar}.id AS seminar_id, {$this->seminar}.*, {$this->kategori_s}.id, {$this->kategori_s}.nama AS kategori_nama, {$this->dosen}.id, {$this->dosen}.nama AS dosen_nama, d1.nama AS dosen1_nama, d2.nama AS dosen2_nama")
 		->from("{$this->seminar}")
 		->join("{$this->kategori_s}", "{$this->kategori_s}.id = {$this->seminar}.kategori_seminar_id")
-		->join("{$this->dosen}", "{$this->dosen}.id = {$this->seminar}.pembimbing_id");
+		->join("{$this->dosen}", "{$this->dosen}.id = {$this->seminar}.pembimbing_id")
+		->join("{$this->dosen} as d1", "d1.id = {$this->seminar}.penguji1_id")
+		->join("{$this->dosen} as d2", "d2.id = {$this->seminar}.penguji2_id");
 		if($where != NULL) {
 			$this->db->where($where);
 		}

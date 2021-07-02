@@ -90,7 +90,10 @@ class CI_Controller {
 		$this->load->model([
 			'user_models',
 			'menu_models',
-			'jadwal_models'
+			'jadwal_models',
+			'p_seminar_models',
+			'dosen_models',
+			'kategori_models'
 		]);
 	}
 
@@ -108,9 +111,8 @@ class CI_Controller {
 	}
 
 	public function get_menu($role = NULL){
-		$this->load->model('Menu_models');
-		$data_menu = $this->Menu_models->get_menu($role)->result();
-		$data_sub_menu = $this->Menu_models->get_sub_menu($role)->result();
+		$data_menu = $this->menu_models->get_menu($role)->result();
+		$data_sub_menu = $this->menu_models->get_sub_menu($role)->result();
 		$menu = [];
 		foreach ($data_menu as $m) { $menu[$m->id_menu] = $m; $m->submenu = array();}
 		foreach ($data_sub_menu as $sm) {$menu[$sm->parent_id]->submenu[] = $sm;}
@@ -132,6 +134,15 @@ class CI_Controller {
 			redirect("login?redirect={$to}");
 		} else {
 			return true;
+		}
+	}
+
+	public function access($menu_link, $role_id = NULL){
+		$check_valid_menu = $this->menu_models->get_menu_access(['menu_link' => $menu_link, 'role_id' => $role_id ?? 2])->result();
+		if($check_valid_menu){
+			return true;
+		} else {
+			redirect();
 		}
 	}
 

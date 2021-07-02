@@ -3,21 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	protected $classname = 'home';
+
 	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = 'home';
@@ -41,6 +28,19 @@ class Home extends CI_Controller {
 		}
 	}
 
+	function daftar(){
+		if($this->auto_validation($this->input->post(), ['email' => 'required', 'password' => 'required']) == TRUE){
+			$this->_auth();
+		} else {
+			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+			$data['pages'] = 'daftar';
+			$data['content'] = [
+				'title' => 'Masuk | SISTA - Sistem Informasi Seminar Tugas Akhir'
+			];
+			$this->load->view('layouts/base', $data);
+		}
+	}
+
 	private function _auth(){
 		$check_user = $this->user_models->get_user(['user_email' => $this->input->post('email')])->row();
 		if($check_user) {
@@ -49,6 +49,8 @@ class Home extends CI_Controller {
 					'user_email' => $this->input->post('email'),
 					'user_password' => $this->input->post('password'),
 					'user_role' => $check_user->role_id,
+					'user_nim' => $check_user->user_nim,
+					'user_nama' => $check_user->user_name,
 					'is_login' => TRUE
 				];
 				$this->session->set_userdata($session);

@@ -9,7 +9,7 @@
         <div class="float-lg-right">
           <a href="#" style="color: blue;">Home</a> >
           <a href="#" style="color: blue;">Jadwal</a> >
-          Seminar Proposal
+          <?= $content['jadwal']->kategori_nama ?>
         </div>
       </div>
     </header>
@@ -35,7 +35,7 @@
               <div class="row">
                 <div class="col-6">
                   <p class="m-0">Waktu :</p>
-                  <p class="text-bold"><?= "{$content['jadwal']->jam} {$content['jadwal']->tanggal}" ?></p>
+                  <p class="text-bold"><?= "{$content['jadwal']->tanggal}, Pukul {$content['jadwal']->jam} " ?></p>
                   <p class="m-0">Ruang :</p>
                   <p class="text-bold">Zoom Online</p>
                 </div>
@@ -43,7 +43,8 @@
                   <p class="m-0">Pembimbing :</p>
                   <p class="text-bold"><?= $content['jadwal']->dosen_nama ?></p>
                   <p class="m-0">Penguji :</p>
-                  <p class="text-bold"><?= $content['jadwal']->penguji1_id ?></p>
+                  <p class="text-bold m-0">1. <?= $content['jadwal']->dosen1_nama ?></p>
+									<p class="text-bold m-0">2. <?= $content['jadwal']->dosen2_nama ?></p>
                 </div>
               </div>
             </div>
@@ -51,7 +52,7 @@
         </div>
       </div>
     </div>
-    <a href="<?= base_url('jadwal/detail/{id}/daftar') ?>" class="btn btn-dark btn_black btn_mod mt-3">
+    <a href="<?= base_url("jadwal/detail/{$content['jadwal']->seminar_id}/daftar") ?>" class="btn btn-dark btn_black btn_mod mt-3">
       Daftar Peserta
     </a>
   </div>  

@@ -2,24 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jadwal extends CI_Controller {
+	
+	protected $classname = 'jadwal';
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+		$this->access($this->classname, $this->session->userdata('user_role'));
 		$data['pages'] = 'jadwal';
 		$data['content'] = [
 			'title' => 'Jadwal | SISTA - Sistem Informasi Seminar Tugas Akhir',
@@ -31,14 +19,34 @@ class Jadwal extends CI_Controller {
 	function detail($id, $params = NULL){
 		if($params == 'daftar') {
 			$this->gatekeeper(current_url());
-			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
-			$data['pages'] = 'jadwal-daftar';
-			$data['content'] = [
-				'title' => 'Daftar | SISTA - Sistem Informasi Seminar Tugas Akhir',
-				'jadwal' => $this->jadwal_models->get_jadwal(['id' => $id])->row()
+			$rules = [
+				'nim' => 'required',
+				'nama' => 'required'
 			];
-			$this->load->view('layouts/base', $data);
-		} else {
+			if($this->auto_validation($this->input->post(), $rules) == TRUE) {
+				$data = [
+					'nim' => $this->input->post('nim'),
+					'nama' => $this->input->post('nama'),
+					'seminar_id' => $id,
+				];
+				$this->p_seminar_models->post_p_seminar($data);
+				$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+				$data['pages'] = 'jadwal-daftar-success';
+				$data['content'] = [
+					'title' => 'Sukses Daftar | SISTA - Sistem Informasi Seminar Tugas Akhir',
+					'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row()
+				];
+				$this->load->view('layouts/base', $data);
+			}	else {
+				$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+				$data['pages'] = 'jadwal-daftar';
+				$data['content'] = [
+					'title' => 'Detail | SISTA - Sistem Informasi Seminar Tugas Akhir',
+					'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row()
+				];
+				$this->load->view('layouts/base', $data);
+			}
+		}	else {
 			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 			$data['pages'] = 'jadwal-detail';
 			$data['content'] = [

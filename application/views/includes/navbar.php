@@ -10,12 +10,12 @@
 			<?php foreach ($menu as $mn): ?>
 				<?php if(count($mn->submenu)) { ?>
 					<div class="dropdown">
-						<a class="nav-link" href="#" id="<?= $mn->menu_link ?>" data-toggle="dropdown" aria-expanded="false">
+						<a class="nav-link <?= ($this->uri->segment(1) == $mn->menu_link) ? 'active' : '' ?>" href="#" id="<?= $mn->menu_link ?>" data-toggle="dropdown" aria-expanded="false">
 							<span><?= $mn->menu_name; ?> <i class="fas fa-fw fa-chevron-down" style="transform: scale(.75);"></i></span>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="<?= $mn->menu_link ?>">
 						<?php foreach ($mn->submenu as $sm): ?>
-							<a class="dropdown-item <?= ($this->uri->segment(2) == $sm->menu_link) ? 'active' : '' ?>" href="<?= base_url("{$mn->menu_link}/p/{$sm->menu_link}") ?>"><?=  $sm->menu_name; ?></a>
+							<a class="dropdown-item <?= ($this->uri->segment(2) == $sm->menu_link) ? 'active' : '' ?>" href="<?= base_url("{$mn->menu_link}/{$sm->menu_link}") ?>"><?=  $sm->menu_name; ?></a>
 						<?php endforeach; ?>
 						</div>
 					</div>
