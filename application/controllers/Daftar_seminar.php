@@ -11,7 +11,7 @@ class Daftar_seminar extends CI_Controller {
 		$data['pages'] = 'daftar-seminar-kelola-ta';
 		$data['content'] = [
 			'title' => 'Daftar Seminar | SISTA - Sistem Informasi Seminar Tugas Akhir',
-			'jadwal' => $this->jadwal_models->get_jadwal()->result(),
+			'jadwal' => $this->seminar_models->get_seminar()->result(),
 		];
 		$this->load->view('layouts/base', $data);
 	}
@@ -25,8 +25,17 @@ class Daftar_seminar extends CI_Controller {
 		foreach (array_keys($this->input->post()) as $key) $rules[$key] = 'required';
 		if($this->auto_validation($this->input->post(), $rules) == TRUE) {
 			$data = [
-				''
+				'tanggal' => $this->input->post('tangsel'),
+				'jam' => $this->input->post('jamsem'),
+				'kategori_seminar_id' => $this->input->post('seminar'),
+				'nim' => $this->input->post('nim'),
+				'nama_mahasiswa' => $this->input->post('nama'),
+				'judul' => $this->input->post('judul'),
+				'pembimbing_id' => $this->input->post('pembimbing'),
+				'penguji1_id' => $this->input->post('penguji1'),
+				'penguji2_id' => $this->input->post('penguji2'),
 			];
+			$this->seminar_models->post_seminar($data);
 			$this->session->set_flashdata('msg', $this->alert_template("Sukses menambahkan seminar baru", "primary"));
 			redirect('daftar-seminar');
 		} else {
@@ -70,7 +79,7 @@ class Daftar_seminar extends CI_Controller {
 			$data['pages'] = 'daftar-seminar-kelola-peserta';
 			$data['content'] = [
 				'title' => 'Daftar Seminar | SISTA - Sistem Informasi Seminar Tugas Akhir',
-				'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row(),
+				'jadwal' => $this->seminar_models->get_seminar(['seminar_ta.id' => $id])->row(),
 				'peserta' => $this->p_seminar_models->get_p_seminar(['seminar_id' => $id])->result()
 			];
 			$this->load->view('layouts/base', $data);

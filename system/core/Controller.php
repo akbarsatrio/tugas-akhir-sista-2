@@ -90,7 +90,7 @@ class CI_Controller {
 		$this->load->model([
 			'user_models',
 			'menu_models',
-			'jadwal_models',
+			'seminar_models',
 			'p_seminar_models',
 			'dosen_models',
 			'kategori_models'

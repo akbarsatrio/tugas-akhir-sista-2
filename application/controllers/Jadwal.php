@@ -11,7 +11,7 @@ class Jadwal extends CI_Controller {
 		$data['pages'] = 'jadwal';
 		$data['content'] = [
 			'title' => 'Jadwal | SISTA - Sistem Informasi Seminar Tugas Akhir',
-			'jadwal' => $this->jadwal_models->get_jadwal()->result()
+			'jadwal' => $this->seminar_models->get_seminar()->result()
 		];
 		$this->load->view('layouts/base', $data);
 	}
@@ -34,7 +34,7 @@ class Jadwal extends CI_Controller {
 				$data['pages'] = 'jadwal-daftar-success';
 				$data['content'] = [
 					'title' => 'Sukses Daftar | SISTA - Sistem Informasi Seminar Tugas Akhir',
-					'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row()
+					'jadwal' => $this->seminar_models->get_seminar(['seminar_ta.id' => $id])->row()
 				];
 				$this->load->view('layouts/base', $data);
 			}	else {
@@ -42,7 +42,7 @@ class Jadwal extends CI_Controller {
 				$data['pages'] = 'jadwal-daftar';
 				$data['content'] = [
 					'title' => 'Detail | SISTA - Sistem Informasi Seminar Tugas Akhir',
-					'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row()
+					'jadwal' => $this->seminar_models->get_seminar(['seminar_ta.id' => $id])->row()
 				];
 				$this->load->view('layouts/base', $data);
 			}
@@ -51,7 +51,7 @@ class Jadwal extends CI_Controller {
 			$data['pages'] = 'jadwal-detail';
 			$data['content'] = [
 				'title' => 'Detail | SISTA - Sistem Informasi Seminar Tugas Akhir',
-				'jadwal' => $this->jadwal_models->get_jadwal(['seminar_ta.id' => $id])->row()
+				'jadwal' => $this->seminar_models->get_seminar(['seminar_ta.id' => $id])->row()
 			];
 			$this->load->view('layouts/base', $data);
 		}

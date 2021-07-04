@@ -33,7 +33,7 @@
 										<td><?= $jadwal->nama_mahasiswa ?></td>
 										<td><?= $jadwal->kategori_nama ?></td>
 										<td><?= "{$jadwal->tanggal}, Pukul {$jadwal->jam} " ?></td>
-										<td><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->id])->num_rows() ?> Peserta <a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>" class="btn btn-primary ml-3"><i class="far fa-fw fa-eye"></i></a></td>
+										<td><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta <a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>" class="btn btn-primary ml-3"><i class="far fa-fw fa-eye"></i></a></td>
 										<td>
 											<a href="<?= base_url("daftar-seminar/detail/{$jadwal->seminar_id}") ?>" class="btn btn-warning"><i class="far fa-fw fa-pencil"></i></a>
 											<a href="#" class="btn btn-danger" onclick="return confirm('Yakin mau hapus?')"><i class="far fa-fw fa-trash"></i></a>
