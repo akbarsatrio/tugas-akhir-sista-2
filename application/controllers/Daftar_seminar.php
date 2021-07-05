@@ -5,8 +5,12 @@ class Daftar_seminar extends CI_Controller {
 
 	protected $classname = 'daftar-seminar';
 
-	function index() {
+	function __construct() {
+		parent::__construct();
 		$this->access($this->classname, $this->session->userdata('user_role'));
+	}
+
+	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = 'daftar-seminar-kelola-ta';
 		$data['content'] = [
@@ -39,7 +43,6 @@ class Daftar_seminar extends CI_Controller {
 			$this->session->set_flashdata('msg', $this->alert_template("Sukses menambahkan seminar baru", "primary"));
 			redirect('daftar-seminar');
 		} else {
-			$this->access($this->classname, $this->session->userdata('user_role'));
 			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 			$data['pages'] = 'daftar-seminar';
 			$data['content'] = [
@@ -74,7 +77,6 @@ class Daftar_seminar extends CI_Controller {
 				redirect("daftar-seminar/peserta/{$id}");
 			}
 		} else {
-			$this->access($this->classname, $this->session->userdata('user_role'));
 			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 			$data['pages'] = 'daftar-seminar-kelola-peserta';
 			$data['content'] = [

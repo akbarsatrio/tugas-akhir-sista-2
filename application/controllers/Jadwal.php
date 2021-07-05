@@ -5,9 +5,13 @@ class Jadwal extends CI_Controller {
 	
 	protected $classname = 'jadwal';
 
+	function __construct() {
+		parent::__construct();
+		$this->access($this->classname, $this->session->userdata('user_role'));
+	}
+
 	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
-		$this->access($this->classname, $this->session->userdata('user_role'));
 		$data['pages'] = 'jadwal';
 		$data['content'] = [
 			'title' => 'Jadwal | SISTA - Sistem Informasi Seminar Tugas Akhir',

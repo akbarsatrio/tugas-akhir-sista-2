@@ -5,8 +5,12 @@ class Profil extends CI_Controller {
 
 	protected $classname = 'profil';
 
-	function index() {
+	function __construct() {
+		parent::__construct();
 		$this->access($this->classname, $this->session->userdata('user_role'));
+	}
+
+	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = 'profil';
 		$data['content'] = [
