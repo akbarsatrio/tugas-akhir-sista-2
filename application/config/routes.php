@@ -57,6 +57,8 @@ $route['logout'] = 'home/logout';
 // Seminar & peserta
 $route['daftar-seminar'] = 'daftar_seminar/index';
 $route['daftar-seminar/post'] = 'daftar_seminar/post';
+$route['daftar-seminar/delete'] = 'daftar_seminar/delete';
+$route['daftar-seminar/put/(:num)'] = 'daftar_seminar/put/$1';
 $route['daftar-seminar/peserta/(:num)'] = 'daftar_seminar/peserta/$1';
 $route['daftar-seminar/peserta/(:num)/put'] = 'daftar_seminar/peserta/$1/put';
 $route['daftar-seminar/peserta/(:num)/delete'] = 'daftar_seminar/peserta/$1/delete';
