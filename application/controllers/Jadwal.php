@@ -34,13 +34,7 @@ class Jadwal extends CI_Controller {
 					'seminar_id' => $id,
 				];
 				$this->p_seminar_models->post_p_seminar($data);
-				$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
-				$data['pages'] = 'jadwal-daftar-success';
-				$data['content'] = [
-					'title' => 'Sukses Daftar | SISTA - Sistem Informasi Seminar Tugas Akhir',
-					'jadwal' => $this->seminar_models->get_seminar(['seminar_ta.id' => $id])->row()
-				];
-				$this->load->view('layouts/base', $data);
+				$this->state('Daftar Sukses!', 'Tinggal tunggu undangannya deh, ditunggu yaa.', 'sukses.svg', 201);
 			}	else {
 				$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 				$data['pages'] = 'jadwal-daftar';
