@@ -146,4 +146,56 @@ class CI_Controller {
 		}
 	}
 
+	public function returnJson($arr = [], $code = NULL){
+		return $this->output
+			->set_content_type('application/json')
+			->set_status_header($code)
+			->set_output(json_encode($arr));
+	}
+
+	function engine_image($path, $filename, $destination){
+		$minify = [
+			'image_library' => 'gd2',
+			'source_image' => $path.$filename,
+			'new_image' => $destination,
+			'maintain_ratio' => TRUE,
+			'height' => 300,
+			];
+		if(!is_dir($destination)) mkdir($destination, 0777, true);
+		$this->load->library('image_lib', $minify);
+		$this->image_lib->resize();
+	}
+
+	function upload_image($path, $input, $type){
+		date_default_timezone_set('Asia/Jakarta');
+		$filename = strtoupper($type).'-'.date("Y-m-d-H:i:s");
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|svg';
+		$config['max_size'] = '2048';
+		$config['file_name'] = $filename;
+		$this->upload->initialize($config);
+
+		$this->upload->do_upload($input);
+		$this->engine_image($path, $this->upload->data('file_name'), $path."thumb");
+	}
+
+	function delete_image($type, $filename){
+		$path = FCPATH."/assets/img/uploads";
+		@unlink("$path/$type/$filename");
+		@unlink("$path/$type/thumb/$filename");
+	}
+
+	function state($head, $body, $image, $code){
+		$this->output->set_status_header($code);
+		$data['pages'] = 'state';
+		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+		$data['content'] = [
+			'head' => $head,
+			'body' => $body,
+			'code' => $code,
+			'image' => $image
+		];
+		$this->load->view('layouts/base', $data);
+	}
+
 }
