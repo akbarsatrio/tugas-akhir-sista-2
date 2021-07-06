@@ -5,7 +5,33 @@ class Home extends CI_Controller {
 
 	protected $classname = 'home';
 
+	function get_client_ip() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+	}
+
 	function index() {
+		if($this->session->userdata('user_role') == NULL) {
+			$this->db->insert('tbl_visitors', [
+				'visitor_ip' => $this->get_client_ip(),
+				'visitor_time' => date('H:i:s'),
+				'created_at' => date('Y-m-d')
+			]);
+		}
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = $this->session->userdata('user_role') == '1' ? 'home-dosen' : 'home';
 		$data['content'] = [
