@@ -10,4 +10,4 @@
 <link rel="stylesheet" type="text/css" href="<?= $this->assets_sista('css/util.css') ?>">
 <link rel="stylesheet" href="<?= $this->assets_sista('css/starter.css') ?>">
 <link rel="stylesheet" href="<?= $this->assets_sista('css/style.css') ?>">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
