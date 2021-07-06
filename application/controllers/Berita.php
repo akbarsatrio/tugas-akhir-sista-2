@@ -5,8 +5,12 @@ class Berita extends CI_Controller {
 
 	protected $classname = 'berita';
 
-	function index() {
+	function __construct() {
+		parent::__construct();
 		$this->access($this->classname, $this->session->userdata('user_role'));
+	}
+
+	function index() {
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = 'berita';
 		$data['content'] = [
@@ -16,7 +20,6 @@ class Berita extends CI_Controller {
 	}
 
 	function page($args, $id = NULL){
-		$this->access($this->classname, $this->session->userdata('user_role'));
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 		$data['pages'] = "berita-{$args}";
 		$data['content'] = [

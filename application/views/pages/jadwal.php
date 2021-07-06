@@ -25,7 +25,7 @@
                       <td><a href="<?= base_url("jadwal/detail/{$jadwal->seminar_id}") ?>"><?= $jadwal->nama_mahasiswa ?></a></td>
                       <td><?= $jadwal->judul ?></td>
                       <td><?= "{$jadwal->tanggal}, Pukul {$jadwal->jam}" ?></td>
-                      <td>Online</td>
+                      <td><?= $jadwal->lokasi ?? '-' ?></td>
                   </tr>
 								<?php endforeach; ?>
               </tbody>

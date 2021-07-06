@@ -56,7 +56,7 @@
               <td width="200">NIM</td>
               <td width="800">Mahasiswa/i</td>
 							<td width="100">Kehadiran</td>
-              <td width="100">Action</td>
+              <td width="150">Action</td>
             </tr>
           </thead>
           <tbody>
@@ -70,7 +70,7 @@
 								<form action="<?= base_url("daftar-seminar/peserta/{$content['jadwal']->seminar_id}/delete") ?>" method="POST">
 									<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#<?= $peserta->id ?>"><i class="far fa-fw fa-pencil"></i></a>
 									<input type="hidden" value="<?= $peserta->id ?>" name="peserta-id">
-                	<button type="submit" class="btn btn-danger"><i class="far fa-fw fa-trash" onclick="return confirm('Yakin mau hapus <?= $peserta->nama ?> dari daftar peserta seminar?')"></i></button>
+                	<button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau hapus <?= $peserta->nama ?> dari daftar peserta seminar?')"><i class="far fa-fw fa-trash"></i></button>
 								</form>
 							</td>
             </tr>

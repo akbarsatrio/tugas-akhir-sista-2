@@ -36,8 +36,8 @@
                 <div class="col-6">
                   <p class="m-0">Waktu :</p>
                   <p class="text-bold"><?= "{$content['jadwal']->tanggal}, Pukul {$content['jadwal']->jam} " ?></p>
-                  <p class="m-0">Ruang :</p>
-                  <p class="text-bold">Zoom Online</p>
+                  <p class="m-0">Lokasi Ruangan :</p>
+                  <p class="text-bold"><?= $content['jadwal']->lokasi ?></p>
                 </div>
                 <div class="col-6">
                   <p class="m-0">Pembimbing :</p>

@@ -5,9 +5,35 @@ class Home extends CI_Controller {
 
 	protected $classname = 'home';
 
+	function get_client_ip() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+	}
+
 	function index() {
+		if($this->session->userdata('user_role') == NULL) {
+			$this->db->insert('tbl_visitors', [
+				'visitor_ip' => $this->get_client_ip(),
+				'visitor_time' => date('H:i:s'),
+				'created_at' => date('Y-m-d')
+			]);
+		}
 		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
-		$data['pages'] = 'home';
+		$data['pages'] = $this->session->userdata('user_role') == '1' ? 'home-dosen' : 'home';
 		$data['content'] = [
 			'title' => 'Home | SISTA - Sistem Informasi Seminar Tugas Akhir',
 		];
@@ -29,8 +55,29 @@ class Home extends CI_Controller {
 	}
 
 	function daftar(){
-		if($this->auto_validation($this->input->post(), ['email' => 'required', 'password' => 'required']) == TRUE){
-			$this->_auth();
+		$rules = [
+			'nama' => 'required',
+			'nim' => 'required|is_unique[tbl_users.user_nim]',
+			'email' => 'required|is_unique[tbl_users.user_email]|trim|valid_email',
+			'prodi' => 'required',
+			'angkatan' => 'required',
+			'password' => 'required',
+			'password-confirm' => 'required|matches[password]',
+		];
+		if($this->auto_validation($this->input->post(), $rules) == TRUE){
+			$data = [
+				'user_name' => $this->input->post('nama'),
+				'user_nim' => $this->input->post('nim'),
+				'user_email' => $this->input->post('email'),
+				'user_prodi' => $this->input->post('prodi'),
+				'user_angkatan' => $this->input->post('angkatan'),
+				'user_password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+			];
+			if($this->user_models->post_user($data) == true) {
+				$this->state('Yeay, daftar berhasil!', 'Tinggal tunggu konfirmasi dari admin ya, maksimal 1x24jam', 'sukses.svg', 201);
+			} else {
+				$this->state('Oops, ada kesalahan', 'Kesalahan dalam menginput data, silahkan kembali lagi nanti', 'error.svg', 500);
+			}
 		} else {
 			$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
 			$data['pages'] = 'daftar';
@@ -45,21 +92,32 @@ class Home extends CI_Controller {
 		$check_user = $this->user_models->get_user(['user_email' => $this->input->post('email')])->row();
 		if($check_user) {
 			if(password_verify($this->input->post('password'), $check_user->user_password)) {
-				$session = [
-					'user_email' => $this->input->post('email'),
-					'user_password' => $this->input->post('password'),
-					'user_role' => $check_user->role_id,
-					'user_nim' => $check_user->user_nim,
-					'user_nama' => $check_user->user_name,
-					'is_login' => TRUE
-				];
-				$this->session->set_userdata($session);
-				if($this->session->userdata('redirect')) {
-					redirect($this->session->userdata('redirect'));
-					$this->session->unset_userdata('redirect');
+				if($check_user->is_verified == '1'){
+					$session = [
+						'user_id' => $check_user->id_user,
+						'user_email' => $this->input->post('email'),
+						'user_password' => $this->input->post('password'),
+						'user_role' => $check_user->role_id,
+						'user_nim' => $check_user->user_nim,
+						'user_nama' => $check_user->user_name,
+						'is_login' => TRUE
+					];
+					$this->session->set_userdata($session);
+					if($this->session->userdata('redirect')) {
+						redirect($this->session->userdata('redirect'));
+						$this->session->unset_userdata('redirect');
+					} else {
+						if($this->session->userdata('user_role') != '1'){
+							$this->session->set_flashdata('success', $this->alert_template("Login berhasil, selamat datang {$check_user->user_name}", 'primary'));
+							redirect('profil');
+						} else {
+							$this->session->set_flashdata('success', $this->alert_template("Login berhasil, selamat datang {$check_user->user_name}", 'primary'));
+							redirect('home');
+						}
+					}
 				} else {
-					$this->session->set_flashdata('success', $this->alert_template("Login berhasil, selamat datang {$check_user->user_name}", 'primary'));
-					redirect('profil');
+					$this->session->set_flashdata('error', $this->alert_template('Akun belum diverifikasi', 'danger'));
+				redirect('login');
 				}
 			} else {
 				$this->session->set_flashdata('error', $this->alert_template('Password salah!', 'danger'));
