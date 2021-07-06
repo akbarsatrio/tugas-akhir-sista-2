@@ -93,8 +93,10 @@ class CI_Controller {
 			'seminar_models',
 			'p_seminar_models',
 			'dosen_models',
-			'kategori_models'
+			'kategori_models',
+			'visitor_models',
 		]);
+		date_default_timezone_set('Asia/Jakarta');
 	}
 
 	// --------------------------------------------------------------------
