@@ -11,22 +11,22 @@
 					<h5 class="text-bold">Ikhtisar</h5>
 					<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 					<div class="row ml-0 mb-3">
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
-						<div class="col-md-2 pl-0">
+						<div class="col-md-2 col-6 mb-3 pl-0">
 							<div class="bg-primary rounded p-5"></div>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xl-4 col-lg-6">
-							<h5 class="text-bold">Dominasi Seminar Berdasarkan Kategori</h5>
+							<h5 class="text-bold">Daftar Seminar Berdasarkan Kategori</h5>
 							<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 							<div id="chart3"></div>
 						</div>
@@ -62,7 +62,7 @@
 							<div id="chart4"></div>
 						</div>
 						<div class="col-xl-4 col-lg-6">
-							<h5 class="text-bold">Kehadiran Berdasarkan Kategori</h5>
+							<h5 class="text-bold">Kehadiran Berdasarkan Kategori Seminar</h5>
 							<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 							<div id="chart5"></div>
 						</div>
