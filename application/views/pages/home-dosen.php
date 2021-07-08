@@ -188,9 +188,9 @@
 	var sentimen = {
 		series: [],
 			chart: {
-			height: 300,
+			height: 350,
 			type: 'radialBar',
-			offsetY: -10
+			offsetY: -24
 		},
 		plotOptions: {
 			radialBar: {
@@ -200,10 +200,10 @@
 					name: {
 						fontSize: '16px',
 						color: undefined,
-						offsetY: 120
+						offsetY: 24
 					},
 					value: {
-						offsetY: 76,
+						offsetY: -16,
 						fontSize: '22px',
 						color: undefined,
 						formatter: function (val) {
@@ -225,7 +225,7 @@
 			},
 		},
 		stroke: {
-			dashArray: 4
+			dashArray: 3
 		},
 		labels: [],
 		noData: {
