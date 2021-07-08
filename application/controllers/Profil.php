@@ -8,6 +8,7 @@ class Profil extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->access($this->classname, $this->session->userdata('user_role'));
+		if($this->session->userdata('is_login') != TRUE) redirect('login');
 	}
 
 	function index() {
