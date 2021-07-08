@@ -15,12 +15,31 @@ class Ajax extends CI_Controller {
 	}
 
 	function get_visitor(){
-		$data = $this->visitor_models->ajax_get_visitor();
+		$data = $this->ajax_models->ajax_get_visitor();
 		$this->json_verify($data, 200);
 	}
 
 	function get_user(){
-		$data = $this->user_models->ajax_get_users();
+		$data = $this->ajax_models->ajax_get_users();
+		$this->json_verify($data, 200);
+	}
+
+	function get_seminar_liked_by_peserta(){
+		$data = $this->ajax_models->ajax_get_seminar_liked_by_peserta();
+		$this->json_verify($data, 200);
+	}
+
+	function get_persentase($args){
+		if($args == 'seminar') {
+			$data = $this->ajax_models->ajax_get_persentase_seminar();
+		} else if($args == 'pengguna') {
+			$data = $this->ajax_models->ajax_get_persentase_pengguna();
+		} else if($args == 'sentimen') {
+			$data = $this->ajax_models->ajax_get_persentase_sentimen();
+		} else {
+			$this->json_verify(['response' => 'Oops'], 404);	
+			
+		}
 		$this->json_verify($data, 200);
 	}
 
