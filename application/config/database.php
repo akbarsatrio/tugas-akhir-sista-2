@@ -80,11 +80,11 @@ if($_SERVER['SERVER_NAME'] == 'new.sista.akbarsatrio.com'){
 		'database' => 'akbarsat_sista'
 	];
 } else if ($_SERVER['SERVER_NAME'] == '103.226.138.9') {
-        $upd = [
-                'username' => 'root',
-                'password' => 'Asus-x441ua',
-                'database' => 'db_sista'
-        ];
+	$upd = [
+		'username' => 'sista',
+		'password' => 'sista',
+		'database' => 'db_sista'
+	];
 } else {
 	$upd = [
 		'username' => 'root',
