@@ -8,26 +8,26 @@
     <div class="bg-white wrapper mt-3">
       <div class="wrapper__outer">
 				<div id="menu-shortcut">
-					<h5 class="text-bold">Ikhtisar</h5>
+					<h5 class="text-bold">Shortcut</h5>
 					<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 					<div class="row ml-0 mb-3">
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="bg-primary rounded p-5"></div>
+							<div class="border bg-light shadow-sm rounded p-5"></div>
 						</div>
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 							<div id="persentase-pengguna"></div>
 						</div>
 						<div class="col-xl-4 col-lg-6 mb-5">
-							<h5 class="text-bold">Sentimen Dosen terhadap Nilai Seminar</h5>
+							<h5 class="text-bold">Sentimen Dosen terhadap Seminar Mahasiswa</h5>
 							<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 							<div id="persentase-kehadiran"></div>
 						</div>
@@ -79,13 +79,6 @@
 		chart: {
 			height: 280,
 			type: "area",
-			animations: {
-				enabled: true,
-				easing: 'linear',
-				dynamicAnimation: {
-					speed: 1000
-				}
-			},
 			zoom: false,
 			toolbar: {
         show: false,
@@ -113,6 +106,40 @@
 				opacityTo: 0
 			}
 		},
+		yaxis: [{
+			title: {
+				text: "Visitor",
+				style: {
+          color: "#007bff"
+        }
+			},
+			axisBorder: {
+        show: true,
+        color: "#007bff"
+      },
+			labels: {
+        style: {
+          colors: "#007bff"
+        }
+      },
+		},{
+			opposite: true,
+			title: {
+				text: "Unique Visitor",
+				style: {
+          color: "#28a745"
+        }
+			},
+			axisBorder: {
+        show: true,
+        color: "#28a745"
+      },
+			labels: {
+        style: {
+          colors: "#28a745"
+        }
+      },
+		}]
 	};
 
 	var webAkunOpt = {
@@ -302,6 +329,7 @@
 
 	setInterval(()=> {
 		getJSON()
+		console.log('Updated')
 	}, 15000)
 
 </script>
