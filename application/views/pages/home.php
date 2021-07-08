@@ -8,7 +8,7 @@
       <div class="col-md-6">
         <h1 class="text-bold"> Tentang Sista</h1>
         <p> Sista adalah Sistem informasi seminar tugas akhir yang di sediakan oleh kampus untuk mahasiswa agar mudah dalam menjalanin tugas seminar tugas akhir.  </p>
-        <a href="<?= base_url('jadwal') ?>" class="btn btn-primary btn_mod mt-3">Lihat Jadwal</a>
+        <a href="<?php echo base_url('jadwal') ?>" class="btn btn-primary btn_mod mt-3">Lihat Jadwal</a>
       </div>
       <div class="col-md-4 d-none d-md-block ml-auto">
         <div class="home100-pic text-center" data-tilt>
