@@ -67,7 +67,7 @@ class Ajax_models extends CI_Model{
 	function ajax_get_seminar_liked_by_peserta(){
 		$get_data = $this->db->select("*, {$this->kategori_s}.id AS kategori_id, {$this->kategori_s}.nama AS kategori_nama, COUNT({$this->peserta_s}.seminar_id) AS total")
 		->from("{$this->kategori_s}")
-		->join("{$this->seminar}", "{$this->seminar}.kategori_seminar_id = {$this->kategori_s}.id")
+		->join("{$this->seminar}", "{$this->seminar}.kategori_seminar_id = {$this->kategori_s}.id", "LEFT")
 		->join("{$this->peserta_s}", "{$this->peserta_s}.seminar_id = {$this->seminar}.id", "LEFT")
 		->group_by("{$this->kategori_s}.nama")
 		->order_by("{$this->kategori_s}.nama", 'ASC')
@@ -144,21 +144,16 @@ class Ajax_models extends CI_Model{
 		$data['labels'] = [];
 		foreach ($get_data as $value) {
 			array_push($data['series'], (int) $value->total);
-			switch ($value->total) {
-				case $value->total >= 85:
-					$msg = 'Sangat Baik';
-					break;
-				case $value->total >= 75:
-					$msg = 'Baik';
-					break;
-				case $value->total >= 50:
-					$msg = 'Buruk';
-					break;
-				case $value->total < 50:
-					$msg = 'Sangat Buruk';
-					break;
-				default:
-					break;
+			if($value->total >= 85){
+				$msg = 'Sangat Baik';
+			} else if($value->total >= 75) {
+				$msg = 'Baik';
+			} else if($value->total >= 50) {
+				$msg = 'Buruk';
+			} else if($value->total >= 0 && $value->total != NULL) {
+				$msg = 'Sangat Buruk';
+			} else {
+				$msg = 'Belum ada data';
 			}
 			array_push($data['labels'], $msg);
 		}

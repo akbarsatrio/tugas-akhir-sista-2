@@ -127,10 +127,13 @@
 		dataLabels: {
 			enabled: true
 		},
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var persentase = {
-		series: [22,33,22,22],
+		series: [],
 		chart: {
 			width: 380,
 			type: 'donut',
@@ -155,7 +158,10 @@
 			position: 'bottom',
 			offsetY: 0,
 		},
-		labels: []
+		labels: [],
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var webSeminarOpt = {
@@ -173,15 +179,18 @@
                 return val.toFixed()
             }
         }
-    }]
+    }],
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var sentimen = {
 		series: [],
 			chart: {
-			height: 300,
+			height: 350,
 			type: 'radialBar',
-			offsetY: -10
+			offsetY: -24
 		},
 		plotOptions: {
 			radialBar: {
@@ -191,10 +200,10 @@
 					name: {
 						fontSize: '16px',
 						color: undefined,
-						offsetY: 120
+						offsetY: 24
 					},
 					value: {
-						offsetY: 76,
+						offsetY: -16,
 						fontSize: '22px',
 						color: undefined,
 						formatter: function (val) {
@@ -216,9 +225,12 @@
 			},
 		},
 		stroke: {
-			dashArray: 4
+			dashArray: 3
 		},
 		labels: [],
+		noData: {
+			text: 'Loading...'
+		},
 	}
 
 	var webVisit = new ApexCharts(document.querySelector("#jumlah-pengunjung"), webVisitOpt);
