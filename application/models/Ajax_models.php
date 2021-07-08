@@ -67,7 +67,7 @@ class Ajax_models extends CI_Model{
 	function ajax_get_seminar_liked_by_peserta(){
 		$get_data = $this->db->select("*, {$this->kategori_s}.id AS kategori_id, {$this->kategori_s}.nama AS kategori_nama, COUNT({$this->peserta_s}.seminar_id) AS total")
 		->from("{$this->kategori_s}")
-		->join("{$this->seminar}", "{$this->seminar}.kategori_seminar_id = {$this->kategori_s}.id")
+		->join("{$this->seminar}", "{$this->seminar}.kategori_seminar_id = {$this->kategori_s}.id", "LEFT")
 		->join("{$this->peserta_s}", "{$this->peserta_s}.seminar_id = {$this->seminar}.id", "LEFT")
 		->group_by("{$this->kategori_s}.nama")
 		->order_by("{$this->kategori_s}.nama", 'ASC')
