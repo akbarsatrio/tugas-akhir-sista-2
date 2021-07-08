@@ -144,21 +144,16 @@ class Ajax_models extends CI_Model{
 		$data['labels'] = [];
 		foreach ($get_data as $value) {
 			array_push($data['series'], (int) $value->total);
-			switch ($value->total) {
-				case $value->total >= 85:
-					$msg = 'Sangat Baik';
-					break;
-				case $value->total >= 75:
-					$msg = 'Baik';
-					break;
-				case $value->total >= 50:
-					$msg = 'Buruk';
-					break;
-				case $value->total < 50:
-					$msg = 'Sangat Buruk';
-					break;
-				default:
-					break;
+			if($value->total >= 85){
+				$msg = 'Sangat Baik';
+			} else if($value->total >= 75) {
+				$msg = 'Baik';
+			} else if($value->total >= 50) {
+				$msg = 'Buruk';
+			} else if($value->total >= 0 && $value->total != NULL) {
+				$msg = 'Sangat Buruk';
+			} else {
+				$msg = 'Belum ada data';
 			}
 			array_push($data['labels'], $msg);
 		}

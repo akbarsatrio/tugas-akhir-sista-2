@@ -127,10 +127,13 @@
 		dataLabels: {
 			enabled: true
 		},
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var persentase = {
-		series: [22,33,22,22],
+		series: [],
 		chart: {
 			width: 380,
 			type: 'donut',
@@ -155,7 +158,10 @@
 			position: 'bottom',
 			offsetY: 0,
 		},
-		labels: []
+		labels: [],
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var webSeminarOpt = {
@@ -173,7 +179,10 @@
                 return val.toFixed()
             }
         }
-    }]
+    }],
+		noData: {
+			text: 'Loading...'
+		},
 	};
 
 	var sentimen = {
@@ -219,6 +228,9 @@
 			dashArray: 4
 		},
 		labels: [],
+		noData: {
+			text: 'Loading...'
+		},
 	}
 
 	var webVisit = new ApexCharts(document.querySelector("#jumlah-pengunjung"), webVisitOpt);
