@@ -94,7 +94,7 @@ class CI_Controller {
 			'p_seminar_models',
 			'dosen_models',
 			'kategori_models',
-			'visitor_models',
+			'ajax_models'
 		]);
 		date_default_timezone_set('Asia/Jakarta');
 	}
