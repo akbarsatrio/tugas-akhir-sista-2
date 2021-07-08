@@ -72,6 +72,7 @@ class Home extends CI_Controller {
 				'user_prodi' => $this->input->post('prodi'),
 				'user_angkatan' => $this->input->post('angkatan'),
 				'user_password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'month_created' => date('Y-m')
 			];
 			if($this->user_models->post_user($data) == true) {
 				$this->state('Yeay, daftar berhasil!', 'Tinggal tunggu konfirmasi dari admin ya, maksimal 1x24jam', 'sukses.svg', 201);
