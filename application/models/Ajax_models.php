@@ -146,9 +146,11 @@ class Ajax_models extends CI_Model{
 			array_push($data['series'], (int) $value->total);
 			if($value->total >= 85){
 				$msg = 'Sangat Baik';
-			} else if($value->total >= 75) {
+			} else if($value->total >= 70) {
 				$msg = 'Baik';
-			} else if($value->total >= 50) {
+			} else if($value->total >= 65) {
+				$msg = 'Cukup';
+			} else if($value->total >= 40) {
 				$msg = 'Buruk';
 			} else if($value->total >= 0 && $value->total != NULL) {
 				$msg = 'Sangat Buruk';
