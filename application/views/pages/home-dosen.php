@@ -62,7 +62,7 @@
 							<div id="persentase-pengguna"></div>
 						</div>
 						<div class="col-xl-4 col-lg-6 mb-5">
-							<h5 class="text-bold">Sentimen Dosen terhadap Seminar Mahasiswa</h5>
+							<h5 class="text-bold">Sentimen Dosen terhadap Seminar Mahasiswa dalam Skor</h5>
 							<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 							<div id="persentase-kehadiran"></div>
 						</div>
@@ -94,7 +94,7 @@
 		series: [],
 		color: ['#007bff'],
 		stroke: {
-			curve: 'smooth',
+			curve: 'straight',
 		},
 		dataLabels: {
 			enabled: true
@@ -172,7 +172,7 @@
 						show: true,
 						total: {
 							show: true,
-							showAlways: true,
+							showAlways: false,
 						}
 					}
 				},
@@ -231,10 +231,10 @@
 					},
 					value: {
 						offsetY: -16,
-						fontSize: '22px',
+						fontSize: '48px',
 						color: undefined,
 						formatter: function (val) {
-							return val + "%";
+							return val;
 						}
 					}
 				}
