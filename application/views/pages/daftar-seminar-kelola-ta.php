@@ -21,7 +21,7 @@
 								<th>Mahasiswa/i</th>
 								<th>Seminar</th>
 								<th>Waktu</th>
-								<th>Total Peserta</th>
+								<th>Peserta</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -33,10 +33,10 @@
 										<td><?= $jadwal->nama_mahasiswa ?></td>
 										<td><?= $jadwal->kategori_nama ?></td>
 										<td><?= "{$jadwal->tanggal}, Pukul {$jadwal->jam} " ?></td>
-										<td><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta <a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>" class="btn btn-primary ml-3"><i class="far fa-fw fa-eye"></i></a></td>
+										<td><a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>"><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta (view)</a></td>
 										<td>
 											<div class="d-flex">
-												<a href="<?= base_url("daftar-seminar/put/{$jadwal->seminar_id}") ?>" class="btn btn-warning mr-1"><i class="far fa-fw fa-pencil"></i></a>
+												<a href="<?= base_url("daftar-seminar/put/{$jadwal->seminar_id}") ?>" class="btn btn-warning mr-1"><i class="far fa-fw fa-edit"></i></a>
 												<form action="<?= base_url('daftar-seminar/delete') ?>" method="POST">
 													<input type="hidden" value="<?= $jadwal->seminar_id ?>" name="seminar_id">
 													<button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau hapus?')"><i class="far fa-fw fa-trash"></i></button>

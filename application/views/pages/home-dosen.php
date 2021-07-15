@@ -8,26 +8,60 @@
     <div class="bg-white wrapper mt-3">
       <div class="wrapper__outer">
 				<div id="menu-shortcut">
-					<h5 class="text-bold">Shortcut</h5>
+					<h5 class="text-bold">Ikhtisar</h5>
 					<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 					<div class="row ml-0 mb-3">
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
+						<div class="col-md-3 col-6 mb-3 pl-0">
+							<div class="border bg-light shadow-sm rounded h-100 p-3">
+								<div class="row align-items-center h-100 m-0">
+									<div class="icon-wrapper p-3 bg-primary rounded text-white mr-3 mb-2 mb-md-0">
+										<i class="far fa-fw fa-users"></i>
+									</div>
+									<div class="desc-wrapper">
+										<small>Total Pengguna</small>
+										<h5 class="mb-1"><strong><?= $content['count']['pengguna'] ?></strong></h5>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
+						<div class="col-md-3 col-6 mb-3 pl-0">
+							<div class="border bg-light shadow-sm rounded p-3">
+								<div class="row align-items-center h-100 m-0">
+									<div class="icon-wrapper p-3 bg-primary rounded text-white mr-3 mb-2 mb-md-0">
+										<i class="far fa-fw fa-chalkboard-teacher"></i>
+									</div>
+									<div class="desc-wrapper">
+										<small>Total Dosen</small>
+										<h5><strong><?= $content['count']['dosen'] ?></strong></h5>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
+						<div class="col-md-3 col-6 mb-3 pl-0">
+							<div class="border bg-light shadow-sm rounded p-3">
+								<div class="row align-items-center h-100 m-0">
+									<div class="icon-wrapper p-3 bg-primary rounded text-white mr-3 mb-2 mb-md-0">
+										<i class="far fa-fw fa-calendar-alt"></i>
+									</div>
+									<div class="desc-wrapper">
+										<small>Total Seminar</small>
+										<h5><strong><?= $content['count']['seminar'] ?></strong></h5>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
-						</div>
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
-						</div>
-						<div class="col-md-2 col-6 mb-3 pl-0">
-							<div class="border bg-light shadow-sm rounded p-5"></div>
+						<div class="col-md-3 col-6 mb-3 pl-0">
+							<div class="border bg-light shadow-sm rounded p-3">
+								<div class="row align-items-center h-100 m-0">
+									<div class="icon-wrapper p-3 bg-primary rounded text-white mr-3 mb-2 mb-md-0">
+										<i class="far fa-fw fa-tags"></i>
+									</div>
+									<div class="desc-wrapper">
+										<small>Total Kategori</small>
+										<h5><strong><?= $content['count']['kategori'] ?></strong></h5>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -62,7 +96,7 @@
 							<div id="persentase-pengguna"></div>
 						</div>
 						<div class="col-xl-4 col-lg-6 mb-5">
-							<h5 class="text-bold">Sentimen Dosen terhadap Seminar Mahasiswa</h5>
+							<h5 class="text-bold">Sentimen Dosen terhadap Seminar Mahasiswa dalam Skor</h5>
 							<hr width="25" align="left" class="bg-dark" style="height: 1px;">
 							<div id="persentase-kehadiran"></div>
 						</div>
@@ -94,7 +128,7 @@
 		series: [],
 		color: ['#007bff'],
 		stroke: {
-			curve: 'smooth',
+			curve: 'straight',
 		},
 		dataLabels: {
 			enabled: true
@@ -172,7 +206,7 @@
 						show: true,
 						total: {
 							show: true,
-							showAlways: true,
+							showAlways: false,
 						}
 					}
 				},
@@ -231,10 +265,10 @@
 					},
 					value: {
 						offsetY: -16,
-						fontSize: '22px',
+						fontSize: '48px',
 						color: undefined,
 						formatter: function (val) {
-							return val + "%";
+							return val;
 						}
 					}
 				}

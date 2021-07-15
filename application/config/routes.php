@@ -67,5 +67,11 @@ $route['daftar-seminar/peserta/(:num)/delete'] = 'daftar_seminar/peserta/$1/dele
 $route['berita/(:any)'] = 'berita/page/$1';
 
 
+// Lainnya
+$route['lainnya/verifikasi-akun'] = 'lainnya/verifikasi_akun';
+$route['lainnya/kategori-seminar'] = 'lainnya/kategori_seminar';
+$route['lainnya/data-dosen'] = 'lainnya/data_dosen';
+$route['lainnya/detail-penilaian'] = 'lainnya/detail_penilaian';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
