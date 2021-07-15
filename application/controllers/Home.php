@@ -36,6 +36,12 @@ class Home extends CI_Controller {
 		$data['pages'] = $this->session->userdata('user_role') == '1' ? 'home-dosen' : 'home';
 		$data['content'] = [
 			'title' => 'Home | SISTA - Sistem Informasi Seminar Tugas Akhir',
+			'count' => [
+				'pengguna' => $this->user_models->get_user()->num_rows(),
+				'dosen' => $this->dosen_models->get_dosen()->num_rows(),
+				'seminar' => $this->seminar_models->get_seminar()->num_rows(),
+				'kategori' => $this->kategori_models->get_kategori()->num_rows()
+			]
 		];
 		$this->load->view('layouts/base', $data);
 	}
