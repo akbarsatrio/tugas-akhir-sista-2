@@ -11,6 +11,10 @@ class Lainnya extends CI_Controller {
 		if($this->session->userdata('is_login') != TRUE) redirect('login');
 	}
 
+	function index(){
+		redirect();
+	}
+
 	function verifikasi_akun() {
 		$rules = [];
 		foreach (array_keys($this->input->post()) as $key) $rules[$key] = 'required';
@@ -35,5 +39,23 @@ class Lainnya extends CI_Controller {
 			];
 			$this->load->view('layouts/base', $data);
 		}
+	}
+
+	function kategori_seminar(){
+		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+		$data['pages'] = 'kategori-seminar';
+		$data['content'] = [
+			'title' => 'Kategori Seminar | SISTA - Sistem Informasi Seminar Tugas Akhir',
+		];
+		$this->load->view('layouts/base', $data);
+	}
+
+	function data_dosen(){
+		$data['menu'] = $this->get_menu($this->session->userdata('user_role'));
+		$data['pages'] = 'data-dosen';
+		$data['content'] = [
+			'title' => 'Data Dosen | SISTA - Sistem Informasi Seminar Tugas Akhir',
+		];
+		$this->load->view('layouts/base', $data);
 	}
 }

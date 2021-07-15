@@ -21,7 +21,7 @@
 								<th>Mahasiswa/i</th>
 								<th>Seminar</th>
 								<th>Waktu</th>
-								<th>Total Peserta</th>
+								<th>Peserta</th>
 								<th>Action</th>
 							</tr>
 						</thead>
