@@ -3,10 +3,10 @@
 		<header class="row">
       <div class="col-md-8">
 				<h1 class="text-bold">Data Dosen</h1>
-        <p>Tabel daftar seminar TA</p>
+        <p>Tabel Data Dosen</p>
       </div>
       <div class="col-md-4">
-			<a href="<?= base_url('daftar-seminar/post') ?>" class="float-md-right btn btn-primary btn_mod">Tambah Data</a>
+			<a href="<?= base_url('data-dosen/post') ?>" class="float-md-right btn btn-primary btn_mod">Tambah Data</a>
       </div>
     </header>
 		<?= $this->session->flashdata('msg') ?>
@@ -27,12 +27,12 @@
 										<td><?= $key+1 ?></td>
 										<td><?= $dosen->nidn ?></td>
 										<td><?= $dosen->nama ?></td>
-										<td><a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>"><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta (view)</a></td>
+										<td><a href="<?= base_url("data-dosen/dosen/{$dosen->dosen_id}") ?>"><?= $this->dosen_models->get_dosen(['dosen_id' => $dosen->dosen_id])->num_rows() ?> Dosen (view)</a></td>
 										<td>
 											<div class="d-flex">
-												<a href="<?= base_url("daftar-seminar/put/{$dosen->seminar_id}") ?>" class="btn btn-warning mr-1"><i class="far fa-fw fa-edit"></i></a>
-												<form action="<?= base_url('daftar-seminar/delete') ?>" method="POST">
-													<input type="hidden" value="<?= $dosen->seminar_id ?>" name="seminar_id">
+												<a href="<?= base_url("data-dosen/put/{$dosen->dosen_id}") ?>" class="btn btn-warning mr-1"><i class="far fa-fw fa-edit"></i></a>
+												<form action="<?= base_url('data-dosen/delete') ?>" method="POST">
+													<input type="hidden" value="<?= $dosen->dosen_id ?>" name="dosen_id">
 													<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin hapus?')"><i class="far fa-fw fa-trash"></i></button>
 												</form>
 											</div>
