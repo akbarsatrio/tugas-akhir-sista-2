@@ -63,7 +63,7 @@ class Home extends CI_Controller {
 	function daftar(){
 		$rules = [
 			'nama' => 'required',
-			'nim' => 'required|is_unique[tbl_users.user_nim]',
+			'nim' => 'required',
 			'email' => 'required|is_unique[tbl_users.user_email]|trim|valid_email',
 			'prodi' => 'required',
 			'angkatan' => 'required',
