@@ -115,6 +115,36 @@
               </div>
             </div>
           </div>
+					<hr>
+					<div class="form-row">
+						<div class="col-md-4">
+              <div class="form-group">
+                <label for="nilai_pembimbing">Nilai Pembimbing :</label>
+                <input type="number" id="nilai_pembimbing" name="nilai_pembimbing" class="form-control form_mod" value="<?= set_value('nilai_pembimbing') != '' ? set_value('nilai_pembimbing') : $content['seminar']->nilai_pembimbing;  ?>">
+								<div class="invalid-feedback">
+									<?= form_error('nilai_pembimbing') ?>
+								</div>
+              </div>
+            </div>
+						<div class="col-md-4">
+              <div class="form-group">
+                <label for="nilai_penguji1">Nilai Penguji 1 :</label>
+                <input type="number" id="nilai_penguji1" name="nilai_penguji1" class="form-control form_mod" value="<?= set_value('nilai_penguji1') != '' ? set_value('nilai_penguji1') : $content['seminar']->nilai_penguji1;  ?>">
+								<div class="invalid-feedback">
+									<?= form_error('nilai_penguji1') ?>
+								</div>
+              </div>
+            </div>
+						<div class="col-md-4">
+              <div class="form-group">
+                <label for="nilai_penguji2">Nilai Penguji 2 :</label>
+                <input type="number" id="nilai_penguji2" name="nilai_penguji2" class="form-control form_mod" value="<?= set_value('nilai_penguji2') != '' ? set_value('nilai_penguji2') : $content['seminar']->nilai_penguji2;  ?>">
+								<div class="invalid-feedback">
+									<?= form_error('nilai_penguji2') ?>
+								</div>
+              </div>
+            </div>
+					</div>
         </div>
       </div>
 			<button type="submit" class="btn btn-dark btn_black btn_mod mt-4">Daftar</button>

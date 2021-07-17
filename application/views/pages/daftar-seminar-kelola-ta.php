@@ -1,3 +1,9 @@
+<style>
+	th, td	{
+		white-space: nowrap; overflow: hidden; text-overflow:ellipsis;
+	}
+</style>
+
 <section class="pt-5">
   <div class="container">
 		<header class="row">
@@ -17,23 +23,21 @@
 						<thead class="bg-primary text-white">
 							<tr>
 								<th>NO</th>
+								<th>Action</th>
+								<th>Peserta</th>
 								<th>NIM</th>
 								<th>Mahasiswa/i</th>
-								<th>Seminar</th>
-								<th>Waktu</th>
-								<th>Peserta</th>
-								<th>Action</th>
+								<th>Nama Seminar</th>
+								<th>Jenis</th>
+								<th>Nilai Pembimbing</th>
+								<th>Nilai Penguji 1</th>
+								<th>Nilai Penguji 2</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach($content['jadwal'] as $key => $jadwal): ?>
 								<tr>
 										<td><?= $key+1 ?></td>
-										<td><?= $jadwal->nim ?></td>
-										<td><?= $jadwal->nama_mahasiswa ?></td>
-										<td><?= $jadwal->kategori_nama ?></td>
-										<td><?= "{$jadwal->tanggal}, Pukul {$jadwal->jam} " ?></td>
-										<td><a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>"><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta (view)</a></td>
 										<td>
 											<div class="d-flex">
 												<a href="<?= base_url("daftar-seminar/put/{$jadwal->seminar_id}") ?>" class="btn btn-warning mr-1"><i class="far fa-fw fa-edit"></i></a>
@@ -43,6 +47,14 @@
 												</form>
 											</div>
 										</td>
+										<td><a href="<?= base_url("daftar-seminar/peserta/{$jadwal->seminar_id}") ?>"><?= $this->p_seminar_models->get_p_seminar(['seminar_id' => $jadwal->seminar_id])->num_rows() ?> Peserta (view)</a></td>
+										<td><?= $jadwal->nim ?></td>
+										<td><?= $jadwal->nama_mahasiswa ?></td>
+										<td><?= $jadwal->judul ?></td>
+										<td><?= "$jadwal->kategori_nama" ?></td>
+										<td><?= $jadwal->nilai_pembimbing ?? '<center>-</center' ?></td>
+										<td><?= $jadwal->nilai_penguji1 ?? '<center>-</center' ?></td>
+										<td><?= $jadwal->nilai_penguji2 ?? '<center>-</center' ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</tbody>
@@ -58,6 +70,5 @@
 <script>
   $(document).ready(function() {
     $('#datatable').DataTable();
-		console.log($('#datatable'));
   } );
 </script>
