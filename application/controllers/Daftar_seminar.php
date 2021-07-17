@@ -23,7 +23,7 @@ class Daftar_seminar extends CI_Controller {
 	function put($id){
 		if($this->seminar_models->get_seminar(['seminar_ta.id' => $id])->num_rows()){
 			$rules = [];
-			foreach (array_keys($this->input->post()) as $key) $rules[$key] = 'required';
+			foreach (array_keys($this->input->post()) as $key) if($key != 'nilai_pembimbing' && $key != 'nilai_penguji1' && $key != 'nilai_penguji2') $rules[$key] = 'required';
 			if($this->auto_validation($this->input->post(), $rules) == TRUE) {
 				$data = [
 					'tanggal' => $this->input->post('tangsel'),
@@ -36,6 +36,9 @@ class Daftar_seminar extends CI_Controller {
 					'pembimbing_id' => $this->input->post('pembimbing'),
 					'penguji1_id' => $this->input->post('penguji1'),
 					'penguji2_id' => $this->input->post('penguji2'),
+					'nilai_pembimbing' => $this->input->post('nilai_pembimbing') == '' ? NULL : $this->input->post('nilai_pembimbing') ,
+					'nilai_penguji1' => $this->input->post('nilai_penguji1')  == '' ? NULL : $this->input->post('nilai_penguji1'),
+					'nilai_penguji2' => $this->input->post('nilai_penguji2')  == '' ? NULL : $this->input->post('nilai_penguji2'),
 				];
 				if($this->seminar_models->put_seminar($data, ['id' => $id]) == TRUE) {
 					$this->session->set_flashdata('msg', $this->alert_template("Sukses mengubah seminar", "primary"));
